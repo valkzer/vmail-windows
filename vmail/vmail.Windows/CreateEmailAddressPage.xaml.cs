@@ -38,7 +38,7 @@ namespace vmail
                 emailAddress.email = txtEmailAddress.Text.ToString();
                 await emailAddress.save();
                 SessionHelper.setCurrentEmailAddress(emailAddress);
-                Frame.Navigate(typeof(UnreadMailPage));
+                Frame.Navigate(typeof(UnreadMailsPage));
             }
             catch (Exception)
             {

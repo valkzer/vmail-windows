@@ -25,6 +25,7 @@
         <TextBlock Grid.Row="2" Grid.Column="0" Name="lblSubejct" FontSize="26" HorizontalAlignment="Right">Subject:</TextBlock>
         <TextBlock Grid.Row="2" Grid.Column="1" Name="txtSubject" FontSize="26" Margin="10,0,10,0"></TextBlock>
         <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="txtMessage" FontSize="18" Margin="10,10,10,10" ></TextBlock>
-        <Button Name="btnReply" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="26" Click="btnReply_Click">Reply</Button>
+        <Button Name="btnCancel" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" FontSize="26" Click="btnCancel_Click">Cancel</Button>
+        <Button Name="btnReply" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" FontSize="26" Click="btnReply_Click">Reply</Button>
     </Grid>
 </Page>

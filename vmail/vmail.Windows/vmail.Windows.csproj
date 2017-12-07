@@ -128,8 +128,11 @@
     <Compile Include="ReadMailPage.xaml.cs">
       <DependentUpon>ReadMailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UnreadMailPage.xaml.cs">
-      <DependentUpon>UnreadMailPage.xaml</DependentUpon>
+    <Compile Include="ReadMailsPage.xaml.cs">
+      <DependentUpon>ReadMailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UnreadMailsPage.xaml.cs">
+      <DependentUpon>UnreadMailsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Util\SessionHelper.cs" />
     <Compile Include="Util\AzureHelper.cs" />
@@ -164,7 +167,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UnreadMailPage.xaml">
+    <Page Include="ReadMailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UnreadMailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

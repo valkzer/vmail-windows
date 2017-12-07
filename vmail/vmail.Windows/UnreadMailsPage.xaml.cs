@@ -22,9 +22,9 @@ namespace vmail
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class UnreadMailPage : Page
+    public sealed partial class UnreadMailsPage : Page
     {
-        public UnreadMailPage()
+        public UnreadMailsPage()
         {
             this.InitializeComponent();
             this.loadUnreadMails();
@@ -51,6 +51,21 @@ namespace vmail
             Mail mail = stackPanel.DataContext as Mail;
 
             Frame.Navigate(typeof(ReadMailPage) , mail);
+        }
+
+        private void btnReadMails_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(ReadMailsPage));
+        }
+
+        private void btnNewMail_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CreateMailPage));
+        }
+
+        private void btnChangeEmailAddress_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CreateEmailAddressPage));
         }
     }
 }

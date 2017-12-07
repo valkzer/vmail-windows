@@ -61,7 +61,7 @@ namespace vmail
             {
                 await this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
-                    Frame.Navigate(typeof(UnreadMailPage));
+                    Frame.Navigate(typeof(UnreadMailsPage));
                 });
             }
             else

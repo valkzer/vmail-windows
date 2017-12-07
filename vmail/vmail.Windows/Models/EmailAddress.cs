@@ -33,7 +33,8 @@ namespace vmail.Models
         {
             MobileServiceCollection<EmailAddress, EmailAddress> items;
             items = await AzureHelper.emailAddressTable
-                    .ToCollectionAsync();
+                .OrderBy(EmailAddress => EmailAddress.email)                
+                .ToCollectionAsync();
             return items;
         }
     }

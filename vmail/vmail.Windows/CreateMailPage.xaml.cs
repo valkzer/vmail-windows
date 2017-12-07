@@ -8,6 +8,7 @@ using Microsoft.WindowsAzure.MobileServices;
 using vmail.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -45,11 +46,52 @@ namespace vmail
 
         private async Task loadEmailAddressOptions()
         {
-            MobileServiceCollection<EmailAddress, EmailAddress> emailAddresses = await EmailAddress.getAll();
-            foreach (EmailAddress emailAddress in emailAddresses)
+            try
             {
-                cboTo.Items.Add(emailAddress.email);
+                MobileServiceCollection<EmailAddress, EmailAddress> emailAddresses = await EmailAddress.getAll();
+                foreach (EmailAddress emailAddress in emailAddresses)
+                {
+                    cboTo.Items.Add(emailAddress.email);
+                }
             }
+            catch (Exception)
+            {
+                var errordialog = new MessageDialog("Failed to load recepients");
+                errordialog.Commands.Add(new UICommand("OK"));
+                await errordialog.ShowAsync();
+            }
+            
+        }
+
+        private async void btnSend_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                EmailAddress email = SessionHelper.getCurrentEmailAddress();
+                Mail mail = new Mail();
+                mail.from = email.email;
+                mail.subject = txtSubject.Text.ToString();
+                mail.message = txtMessage.Text.ToString();
+                mail.to = cboTo.SelectedValue.ToString();
+                await mail.save();
+            }
+            catch (Exception)
+            {
+                var errordialog = new MessageDialog("Failed to send message");
+                errordialog.Commands.Add(new UICommand("OK"));
+                await errordialog.ShowAsync();
+            }           
+
+            var dialog = new MessageDialog("Message sent");
+            dialog.Commands.Add(new UICommand("OK"));
+            await dialog.ShowAsync();
+
+            Frame.Navigate(typeof(UnreadMailsPage));
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(UnreadMailsPage));
         }
     }
 }

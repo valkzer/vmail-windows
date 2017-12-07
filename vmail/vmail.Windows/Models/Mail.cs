@@ -41,5 +41,26 @@ namespace vmail.Models
                     .ToCollectionAsync();
             return items;
         }
+
+        public static async Task<MobileServiceCollection<Mail, Mail>> getReadMail(EmailAddress emailAddress)
+        {
+            MobileServiceCollection<Mail, Mail> items;
+            items = await AzureHelper.mailTable
+                    .Where(Mail => Mail.read == true)
+                    .Where(Mail => Mail.to == emailAddress.email)
+                    .ToCollectionAsync();
+            return items;
+        }
+
+        public async void markAsRead()
+        {
+            this.read = true;
+            await AzureHelper.mailTable.UpdateAsync(this);
+        }
+
+        public async Task save()
+        {
+            await AzureHelper.mailTable.InsertAsync(this);
+        }
     }
 }

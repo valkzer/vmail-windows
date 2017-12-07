@@ -33,6 +33,7 @@ namespace vmail
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.mail = (Mail)e.Parameter;
+            mail.markAsRead();
             txtFrom.Text = mail.from;
             txtMessage.Text = mail.message;
             txtSubject.Text = mail.subject;            
@@ -41,6 +42,11 @@ namespace vmail
         private void btnReply_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(CreateMailPage), mail);
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(UnreadMailsPage));
         }
     }
 }

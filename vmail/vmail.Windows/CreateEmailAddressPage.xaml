@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
         <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="48">Create email address</TextBlock>
         <TextBox Grid.Row="1" x:Name="txtEmailAddress" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" PlaceholderText="Email Address" />
-        <Button Grid.Row="2" x:Name="btnCreateEmailAddress" Content="Create email" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button Grid.Row="2" x:Name="btnCreateEmailAddress" Content="Create email" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="625,0,624,218" Click="btnCreateEmailAddress_Click"/>
 
     </Grid>
 </Page>

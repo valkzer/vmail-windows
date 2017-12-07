@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Microsoft.WindowsAzure.MobileServices;
+using vmail.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -25,6 +27,28 @@ namespace vmail
         public UnreadMailPage()
         {
             this.InitializeComponent();
+            this.loadUnreadMails();
+
+        }
+
+        public async void loadUnreadMails()
+        {
+            EmailAddress emailAddress = SessionHelper.getCurrentEmailAddress();
+            try
+            {
+                MobileServiceCollection<Mail, Mail> unreadMail = await Mail.getUnreadMail(emailAddress);
+                mailList.ItemsSource = unreadMail;
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void StackPanel_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            StackPanel stackPanel = (StackPanel)sender;
+            Mail mail = stackPanel.DataContext as Mail;
         }
     }
 }

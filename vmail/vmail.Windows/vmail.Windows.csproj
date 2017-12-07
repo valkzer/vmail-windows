@@ -109,6 +109,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\NavigationHelper.cs" />
+    <Compile Include="Common\ObservableDictionary.cs" />
+    <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="CreateEmailAddressPage.xaml.cs">
       <DependentUpon>CreateEmailAddressPage.xaml</DependentUpon>
     </Compile>
@@ -118,9 +122,13 @@
     <Compile Include="Models\EmailAddress.cs" />
     <Compile Include="Models\Mail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadMailPage.xaml.cs">
+      <DependentUpon>ReadMailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UnreadMailPage.xaml.cs">
       <DependentUpon>UnreadMailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Util\SessionHelper.cs" />
     <Compile Include="Util\AzureHelper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +152,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ReadMailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UnreadMailPage.xaml">
       <SubType>Designer</SubType>

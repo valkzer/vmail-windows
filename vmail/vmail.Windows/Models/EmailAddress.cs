@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using vmail.Util;
 
 namespace vmail.Models
 {
     class EmailAddress
     {
-        private String id;
-        private String email;
+        public String id { set; get; }
+        public String email { set; get; }
 
         public EmailAddress()
         {
@@ -21,26 +22,9 @@ namespace vmail.Models
             this.email = email;
         }
 
-        public String getId()
+        public async Task save()
         {
-            return id;
-        }
-
-        public EmailAddress setId(String id)
-        {
-            this.id = id;
-            return this;
-        }
-
-        public String getEmail()
-        {
-            return email;
-        }
-
-        public EmailAddress setEmail(String email)
-        {
-            this.email = email;
-            return this;
+            await AzureHelper.emailAddressTable.InsertAsync(this);
         }
     }
 }

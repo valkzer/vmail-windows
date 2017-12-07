@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Microsoft.WindowsAzure.MobileServices;
+using vmail.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Security.Credentials;
@@ -54,12 +55,9 @@ namespace vmail
 
         private async void checkHasRegisteredEmailAddress()
         {
-            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            string emailAddressEmail = (String)localSettings.Values["currentUserEmailAddressEmail"];
-            string emailAddressId = (String)localSettings.Values["currentUserEmailAddressId"];
-            bool hasRegisteredEmailAddress = emailAddressEmail != null && emailAddressId != null;
+            EmailAddress currentEmailAddress = SessionHelper.getCurrentEmailAddress();
 
-            if (hasRegisteredEmailAddress)
+            if (currentEmailAddress != null)
             {
                 await this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {

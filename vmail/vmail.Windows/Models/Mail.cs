@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.WindowsAzure.MobileServices;
+using vmail.Util;
 
 namespace vmail.Models
 {
     class Mail
     {
-        private String id;
-        private String subject;
-        private String to;
-        private String from;
-        private String message;
-        private Boolean read;
+        public String id { set; get; }
+        public String subject { set; get; }
+        public String to { set; get; }
+        public String from { set; get; }
+        public String message { set; get; }
+        public Boolean read { set; get; }
 
         public Mail()
         {
@@ -30,70 +32,14 @@ namespace vmail.Models
             this.read = read;
         }
 
-        public String getId()
+        public static async Task<MobileServiceCollection<Mail, Mail>> getUnreadMail(EmailAddress emailAddress)
         {
-            return id;
-        }
-
-        public Mail setId(String id)
-        {
-            this.id = id;
-            return this;
-        }
-
-        public String getSubject()
-        {
-            return subject;
-        }
-
-        public Mail setSubject(String subject)
-        {
-            this.subject = subject;
-            return this;
-        }
-
-        public String getTo()
-        {
-            return to;
-        }
-
-        public Mail setTo(String to)
-        {
-            this.to = to;
-            return this;
-        }
-
-        public String getFrom()
-        {
-            return from;
-        }
-
-        public Mail setFrom(String from)
-        {
-            this.from = from;
-            return this;
-        }
-
-        public String getMessage()
-        {
-            return message;
-        }
-
-        public Mail setMessage(String message)
-        {
-            this.message = message;
-            return this;
-        }
-
-        public Boolean getRead()
-        {
-            return read;
-        }
-
-        public Mail setRead(Boolean read)
-        {
-            this.read = read;
-            return this;
+            MobileServiceCollection<Mail, Mail> items;
+            items = await AzureHelper.mailTable
+                    .Where(Mail => Mail.read == false)
+                    .Where(Mail => Mail.to == emailAddress.email)
+                    .ToCollectionAsync();
+            return items;
         }
     }
 }

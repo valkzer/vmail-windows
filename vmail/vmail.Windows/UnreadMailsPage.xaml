@@ -18,8 +18,8 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock VerticalAlignment="Center"  Margin="10,10,10,10" HorizontalAlignment="Center" FontSize="48" Grid.ColumnSpan="3">Unread Mails</TextBlock>
-        <Button Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Name="btnReadMails" Click="btnReadMails_Click">Sent Mail</Button>
+        <TextBlock Name="lblTitle" VerticalAlignment="Center"  Margin="10,10,10,10" HorizontalAlignment="Center" FontSize="48" Grid.ColumnSpan="3">Unread Mails</TextBlock>
+        <Button Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Name="btnReadMails" Click="btnReadMails_Click">Read Mails</Button>
         <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Name="btnNewMail" Click="btnNewMail_Click">New Mail</Button>
         <Button Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" Name="btnChangeEmailAddress" Click="btnChangeEmailAddress_Click">Change Email Address</Button>
         <ListView Grid.Row="2" Grid.ColumnSpan="3" Name="mailList" Margin="10,10,10,10" SelectionMode="None">

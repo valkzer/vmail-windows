@@ -74,6 +74,12 @@ namespace vmail
                 mail.message = txtMessage.Text.ToString();
                 mail.to = cboTo.SelectedValue.ToString();
                 await mail.save();
+
+                var dialog = new MessageDialog("Message sent");
+                dialog.Commands.Add(new UICommand("OK"));
+                await dialog.ShowAsync();
+
+                Frame.Navigate(typeof(UnreadMailsPage));
             }
             catch (Exception)
             {
@@ -82,11 +88,7 @@ namespace vmail
                 await errordialog.ShowAsync();
             }           
 
-            var dialog = new MessageDialog("Message sent");
-            dialog.Commands.Add(new UICommand("OK"));
-            await dialog.ShowAsync();
-
-            Frame.Navigate(typeof(UnreadMailsPage));
+            
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

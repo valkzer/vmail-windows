@@ -7,6 +7,7 @@ using Microsoft.WindowsAzure.MobileServices;
 using vmail.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -24,24 +25,27 @@ namespace vmail
     /// </summary>
     public sealed partial class UnreadMailsPage : Page
     {
+        EmailAddress currentEmailAddress = SessionHelper.getCurrentEmailAddress();
+
         public UnreadMailsPage()
         {
             this.InitializeComponent();
+            lblTitle.Text = lblTitle.Text + " : " + currentEmailAddress.email;
             this.loadUnreadMails();
-
         }
 
         public async void loadUnreadMails()
         {
-            EmailAddress emailAddress = SessionHelper.getCurrentEmailAddress();
             try
             {
-                MobileServiceCollection<Mail, Mail> unreadMail = await Mail.getUnreadMail(emailAddress);
+                MobileServiceCollection<Mail, Mail> unreadMail = await Mail.getUnreadMail(currentEmailAddress);
                 mailList.ItemsSource = unreadMail;
             }
             catch (Exception)
             {
-
+                var errordialog = new MessageDialog("Failed to load unread mails");
+                errordialog.Commands.Add(new UICommand("OK"));
+                await errordialog.ShowAsync();
             }
         }
 
@@ -50,7 +54,7 @@ namespace vmail
             StackPanel stackPanel = (StackPanel)sender;
             Mail mail = stackPanel.DataContext as Mail;
 
-            Frame.Navigate(typeof(ReadMailPage) , mail);
+            Frame.Navigate(typeof(ReadMailPage), mail);
         }
 
         private void btnReadMails_Click(object sender, RoutedEventArgs e)

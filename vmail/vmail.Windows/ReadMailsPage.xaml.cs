@@ -7,6 +7,7 @@ using Microsoft.WindowsAzure.MobileServices;
 using vmail.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -24,24 +25,27 @@ namespace vmail
     /// </summary>
     public sealed partial class ReadMailsPage : Page
     {
+        EmailAddress currentEmailAddress = SessionHelper.getCurrentEmailAddress();
+
         public ReadMailsPage()
         {
             this.InitializeComponent();
-            this.loadUnreadMails();
-
+            lblTitle.Text = lblTitle.Text + " : " + currentEmailAddress.email;
+            this.loadReadMails();
         }
 
-        public async void loadUnreadMails()
-        {
-            EmailAddress emailAddress = SessionHelper.getCurrentEmailAddress();
+        public async void loadReadMails()
+        {            
             try
             {
-                MobileServiceCollection<Mail, Mail> unreadMail = await Mail.getReadMail(emailAddress);
+                MobileServiceCollection<Mail, Mail> unreadMail = await Mail.getReadMail(currentEmailAddress);
                 mailList.ItemsSource = unreadMail;
             }
             catch (Exception)
             {
-
+                var errordialog = new MessageDialog("Failed to load read mails");
+                errordialog.Commands.Add(new UICommand("OK"));
+                await errordialog.ShowAsync();
             }
         }
 

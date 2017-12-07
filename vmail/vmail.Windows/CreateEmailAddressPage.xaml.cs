@@ -7,6 +7,7 @@ using vmail.Models;
 using vmail.Util;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -42,6 +43,9 @@ namespace vmail
             }
             catch (Exception)
             {
+                var errordialog = new MessageDialog("Failed to create email address");
+                errordialog.Commands.Add(new UICommand("OK"));
+                await errordialog.ShowAsync();
                 Frame.Navigate(typeof(MainPage));
             }
 

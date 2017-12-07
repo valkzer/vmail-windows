@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using vmail.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -30,13 +31,23 @@ namespace vmail
             this.InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             this.mail = (Mail)e.Parameter;
-            mail.markAsRead();
+            try
+            {
+                mail.markAsRead();
+            }
+            catch (Exception)
+            {
+                var errordialog = new MessageDialog("Failed to mark message as read");
+                errordialog.Commands.Add(new UICommand("OK"));
+                await errordialog.ShowAsync();
+            }
+
             txtFrom.Text = mail.from;
             txtMessage.Text = mail.message;
-            txtSubject.Text = mail.subject;            
+            txtSubject.Text = mail.subject;
         }
 
         private void btnReply_Click(object sender, RoutedEventArgs e)

@@ -37,5 +37,10 @@ namespace vmail
             txtMessage.Text = mail.message;
             txtSubject.Text = mail.subject;            
         }
+
+        private void btnReply_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CreateMailPage), mail);
+        }
     }
 }

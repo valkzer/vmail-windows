@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="vmail.ReadMailPage"
+    x:Class="vmail.CreateMailPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:vmail"
@@ -20,11 +20,11 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock VerticalAlignment="Center"  Margin="10,10,10,10" HorizontalAlignment="Center" FontSize="48" Grid.ColumnSpan="2">Unread Mail</TextBlock>
-        <TextBlock Grid.Row="1" Grid.Column="0" Name="lblFrom" FontSize="26" HorizontalAlignment="Right">From:</TextBlock>
-        <TextBlock Grid.Row="1" Grid.Column="1" Name="txtFrom" FontSize="26" Margin="10,0,10,0"></TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="0" Name="lblSubejct" FontSize="26" HorizontalAlignment="Right">Subject:</TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="1" Name="txtSubject" FontSize="26" Margin="10,0,10,0"></TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="txtMessage" FontSize="18" Margin="10,10,10,10" ></TextBlock>
-        <Button Name="btnReply" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="26" Click="btnReply_Click">Reply</Button>
+        <TextBlock Grid.Row="1" Grid.Column="0" Name="lblTo" FontSize="26" HorizontalAlignment="Right" Margin="10,10,10,10">To:</TextBlock>
+        <ComboBox Grid.Row="1" Grid.Column="1" Name="cboTo" FontSize="26" Margin="10,10,10,10"/>        
+        <TextBlock Grid.Row="2" Grid.Column="0" Name="lblSubejct" FontSize="26" HorizontalAlignment="Right" Margin="10,10,10,10">Subject:</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" Name="txtSubject" FontSize="26" Margin="10,10,10,10"></TextBox>
+        <TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="txtMessage" FontSize="18" Margin="10,10,10,10" ></TextBox>
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="26">Send</Button>
     </Grid>
 </Page>

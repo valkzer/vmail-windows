@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.WindowsAzure.MobileServices;
 using vmail.Util;
+using Windows.UI.Xaml.Controls;
 
 namespace vmail.Models
 {
@@ -25,6 +27,14 @@ namespace vmail.Models
         public async Task save()
         {
             await AzureHelper.emailAddressTable.InsertAsync(this);
+        }
+
+        internal static async Task<MobileServiceCollection<EmailAddress, EmailAddress>> getAll()
+        {
+            MobileServiceCollection<EmailAddress, EmailAddress> items;
+            items = await AzureHelper.emailAddressTable
+                    .ToCollectionAsync();
+            return items;
         }
     }
 }

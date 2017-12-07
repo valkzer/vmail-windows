@@ -116,6 +116,9 @@
     <Compile Include="CreateEmailAddressPage.xaml.cs">
       <DependentUpon>CreateEmailAddressPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateMailPage.xaml.cs">
+      <DependentUpon>CreateMailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -146,6 +149,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="CreateEmailAddressPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateMailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

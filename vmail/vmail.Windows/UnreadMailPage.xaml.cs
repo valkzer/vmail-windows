@@ -49,6 +49,8 @@ namespace vmail
         {
             StackPanel stackPanel = (StackPanel)sender;
             Mail mail = stackPanel.DataContext as Mail;
+
+            Frame.Navigate(typeof(ReadMailPage) , mail);
         }
     }
 }
